@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lucy White 2nd Year 🐾</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fffafa;
+    }
+    header {
+      background-color: #ffcc70;
+      padding: 20px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      color: #4b3832;
+    }
+    .slideshow-container {
+      position: relative;
+      max-width: 800px;
+      margin: 40px auto;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+    .slide {
+      display: none;
+      position: relative;
+      text-align: center;
+    }
+    .slide img {
+      width: 100%;
+      border-radius: 15px;
+    }
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 16px;
+      font-size: 20px;
+      color: white;
+      font-weight: bold;
+      background-color: rgba(0,0,0,0.4);
+      user-select: none;
+      border-radius: 3px;
+    }
+    .next { right: 0; }
+    .prev { left: 0; }
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.7);
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #444;
+      background-color: #ffcc70;
+      font-weight: bold;
+    }
+    audio { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>We Love You — Happy 2nd Year Lucy! 🎉</header>
+
+  <!-- 🎵 Background Music -->
+  <audio id="bg-music" autoplay loop muted>
+    <source src="lucy-theme.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🎞️ Slideshow -->
+  <div class="slideshow-container" id="slideshow">
+    <!-- Slides 1–18 -->
+    <div class="slide"><img src="dog1.jpg" alt="Lucy photo 1"></div>
+    <div class="slide"><img src="dog2.jpg" alt="Lucy photo 2"></div>
+    <div class="slide"><img src="dog3.jpg" alt="Lucy photo 3"></div>
+    <div class="slide"><img src="dog4.jpg" alt="Lucy photo 4"></div>
+    <div class="slide"><img src="dog5.jpg" alt="Lucy photo 5"></div>
+    <div class="slide"><img src="dog7.jpg" alt="Lucy photo 7"></div>
+    <div class="slide"><img src="dog8.jpg" alt="Lucy photo 8"></div>
+    <div class="slide"><img src="dog10.jpg" alt="Lucy photo 10"></div>
+    <div class="slide"><img src="dog11.jpg" alt="Lucy photo 11"></div>
+    <div class="slide"><img src="dog14.jpg" alt="Lucy photo 14"></div>
+    <div class="slide"><img src="dog16.jpg" alt="Lucy photo 16"></div>
+    <div class="slide"><img src="dog17.jpg" alt="Lucy photo 17"></div>
+    <div class="slide"><img src="dog18.jpg" alt="Lucy photo 18"></div>
+
+    <!-- Final Slide with heading ABOVE the image -->
+    <div class="slide">
+      <h2 style="font-size: 40px; color: #ffcc70; margin-bottom: 10px;">Happy 2nd Year Lucy !!</h2>
+      <img src="dog19.jpg" alt="Lucy final slide">
+    </div>
+
+    <!-- Navigation -->
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+  </div>
+
+  <footer>&copy; 2025 Lucy the Dog. All woofs reserved 🐾</footer>
+
+  <script>
+    // Enable background music after user interaction
+    document.addEventListener('click', () => {
+      const audio = document.getElementById('bg-music');
+      audio.muted = false;
+      audio.play().catch(err => console.warn("Audio playback failed:", err));
+    }, { once: true });
+
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+
+    function showSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.style.display = i === n ? "block" : "none";
+      });
+    }
+
+    function plusSlides(n) {
+      slideIndex = (slideIndex + n + slides.length) % slides.length;
+      showSlide(slideIndex);
+    }
+
+    function autoSlide() {
+      if (slideIndex < slides.length - 1) {
+        plusSlides(1);
+        setTimeout(autoSlide, 4000);
+      } else {
+        // Pause on final slide
+        showSlide(slideIndex);
+      }
+    }
+
+    // Initialize slideshow
+    showSlide(slideIndex);
+    setTimeout(autoSlide, 4000);
+  </script>
+
+</body>
+</html>
